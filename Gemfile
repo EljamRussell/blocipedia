@@ -24,6 +24,7 @@ source 'https://rubygems.org'
 
  group :development, :test do
    gem 'factory_girl_rails'
+   gem 'faker'
  end
 
  gem 'bootstrap-sass'
@@ -41,4 +42,5 @@ source 'https://rubygems.org'
  # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
  gem 'jbuilder', '~> 2.5'
  gem 'thor', '0.19.1'
+ gem 'pundit'
  gem 'devise'

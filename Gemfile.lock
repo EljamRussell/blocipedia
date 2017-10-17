@@ -65,6 +65,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faker (1.8.4)
+      i18n (~> 0.5)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -97,6 +99,8 @@ GEM
     orm_adapter (0.5.0)
     pg (0.21.0)
     puma (3.10.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -199,11 +203,13 @@ DEPENDENCIES
   bootstrap-sass
   devise
   factory_girl_rails
+  faker
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
   pg
   puma (~> 3.0)
+  pundit
   rails (~> 5.1.2)
   rails_12factor
   rspec-rails (~> 3.0)
