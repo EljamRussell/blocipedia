@@ -1,29 +1,27 @@
 require 'random_data'
 
-# Create Users
-5.times do
-  User.create!(
-  email:    RandomData.random_email,
-  password: RandomData.random_sentence
-  )
-end
-
 # Create admin user
-1.times do
-  User.create!(
-  email:     'Faker::Internet.email',
+User.create!(
+  email:     'admin@test.com',
   password:  'helloworld',
   role:       2
+)
+
+# Create standard user
+User.create!(
+  email:    'standard@test.com',
+  password: 'helloworld'
+)
+
+10.times do
+  User.create!(
+    email: Faker::Internet.email,
+    password: 'helloworld'
   )
 end
 
-# Create standard user
-1.times do
-  User.create!(
-  email:    'Faker::Internet.email.com',
-  password: 'helloworld'
-  )
-end
+User.all.each(&:confirm)
+
 users = User.all
 
 # Create Wikis
@@ -34,7 +32,7 @@ users = User.all
     body:   RandomData.random_paragraph
   )
 end
-wikis = Wikis.all
+wikis = Wiki.all
 
 puts "Seed finished"
 puts "#{User.count} users created"

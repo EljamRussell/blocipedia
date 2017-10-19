@@ -9,8 +9,6 @@
 </head>
 <body>
   <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <div class="pull-right login">
     <% if user_signed_in? %>
    Signed in as: <strong><%= current_user.email %></strong> |
@@ -24,7 +22,19 @@
     <li><%= link_to "Blocipedia", root_path %></li>
     <li><%= link_to "About", about_path %></li>
     <li><%= link_to "Wikis", wikis_path %></li>
+    <li><%= link_to "Upgrade", new_charge_path %></li>
   </ul>
+  <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
   <%= yield %>
  </div>
 </body>

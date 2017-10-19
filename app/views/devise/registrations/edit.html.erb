@@ -36,6 +36,31 @@
   </div>
 <% end %>
 
+<h3>Membership</h3>
+<p>Your current membership level is: <strong><%= @user.role.capitalize %></strong></p>
+<% if @user.role == 'standard' %>
+  <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+      <label class="amount">
+        <span>Upgrade to Premium: $15.00</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Premium account upgrade"
+            data-amount="1500"
+            data-locale="auto"></script>
+  <% end %>
+<% elsif @user.role == 'premium' %>
+  <%= link_to "Downgrade Account", downgrade_index_path, method: :create, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to downgrade your account? All of your private wikis will be made public, and you will have to pay again to upgrade your account later.' } %>
+<% end %>
+
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
