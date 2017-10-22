@@ -58,7 +58,7 @@
             data-locale="auto"></script>
   <% end %>
 <% elsif @user.role == 'premium' %>
-  <%= link_to "Downgrade Account", downgrade_index_path, method: :create, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to downgrade your account? All of your private wikis will be made public, and you will have to pay again to upgrade your account later.' } %>
+  <%= link_to "Downgrade Account", downgrade_charges_path, method: :create, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to downgrade your account? All of your private wikis will be made public, and you will have to pay again to upgrade your account later.' } %>
 <% end %>
 
 <h3>Cancel my account</h3>

@@ -20,7 +20,7 @@ User.create!(
   )
 end
 
-User.all.each(&:confirm)
+User.all.each(&:confirmed_at)
 
 users = User.all
 
@@ -32,6 +32,16 @@ users = User.all
     body:   RandomData.random_paragraph
   )
 end
+
+5.times do
+  Wiki.create!(
+    user:     users.sample,
+    title:    "Private Wiki",
+    body:     Faker::Lorem.paragraph,
+    private:  true
+  )
+end
+
 wikis = Wiki.all
 
 puts "Seed finished"
