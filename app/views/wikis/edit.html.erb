@@ -6,6 +6,29 @@
       <li>Make a wiki anyone can edit!</li>
     </ul>
   </div>
+
+  <% if @wiki.private == true && (current_user == @wiki.user || current_user.admin?) %>
+          <h3> Manage Collaborators </h3>
+          <br />
+        <%= link_to "Add Collaborator", new_wiki_collaborator_path(wiki_id: @wiki), class: 'btn btn-success' %>
+        <br />
+          <% if @wiki.collaborators.present? %>
+
+              <% @current_collaborators = @wiki.collaborators %>
+              <% wiki_id = @wiki.id %>
+              <% @current_collaborators.each do |collaborator| %>
+                <tr>
+                  <td>
+                    <strong> <%= collaborator.user.email %> </strong>
+                    <%= button_to "Remove Collaborator", wiki_collaborator_path(@wiki.id, collaborator.id), method: :delete, class: 'btn btn-danger' %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        <% end %>
+      </div>
+
   <div class="col-md-8">
     <%= form_for @wiki do |f| %>
       <div class="form-group">
